@@ -1,8 +1,8 @@
-# Django Celery Template
+# Django React Vite Template
 
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Joel-hanson/django-celery-template)
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Joel-hanson/django-react-vite-template)
 
-This is a template for a Django project with Celery. This project can also be run using the devcontainer in VSCode.
+This is a template for a Django project with React. This project can also be run using the devcontainer in VSCode.
 
 The devcontainer library files are taken from the [vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers) repository. More about devcontainers can be found [here](https://containers.dev/) and [here](https://github.com/devcontainers).
 
@@ -20,7 +20,7 @@ For more information on creating your codespace, visit the [GitHub documentation
 
 ### VS Code Dev Containers
 
-If you already have VS Code and Docker installed, you can click the badge above or [here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Joel-hanson/django-celery-template) to get started. Clicking these links will cause VS Code to automatically install the Dev Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.
+If you already have VS Code and Docker installed, you can click the badge above or [here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Joel-hanson/django-react-vite-template) to get started. Clicking these links will cause VS Code to automatically install the Dev Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.
 
 Follow these steps to open this sample in a container using the VS Code Dev Containers extension:
 

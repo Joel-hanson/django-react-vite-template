@@ -28,11 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_celery_results",
-    "celery",
     "rest_framework",
-    "common",
-    "registry",
 ]
 
 MIDDLEWARE = [
@@ -126,37 +122,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# Redis
-REDIS_URL = "redis://{host}:{port}/{db}".format(
-    host=config("REDIS_HOST", "redis", cast=str),
-    port=config("REDIS_PORT", "6379", cast=int),
-    db=config("REDIS_DB", default=1, cast=int),
-)
-
-# Celery
-CELERY_ACCEPT_CONTENT = ["application/json"]
-CELERY_TASK_SERIALIZER = "json"
-CELERY_RESULT_SERIALIZER = "json"
-CELERY_ACKS_LATE = False
-CELERY_TIMEZONE = TIME_ZONE
-
-BROKER_URL = REDIS_URL
-CELERY_BROKER_URL = REDIS_URL
-CELERY_CACHE_BACKEND = "default"
-CELERY_RESULT_BACKEND = "django-db"
-CELERY_RESULT_EXTENDED = True
-# django setting caches using postgres.
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": REDIS_URL,
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    }
-}
-CELERY_RESULT_PERSISTENT = True
 
 # Storage
 STATIC_ROOT = base_dir_join("staticfiles")
