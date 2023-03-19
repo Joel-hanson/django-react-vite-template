@@ -15,10 +15,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # debug configures the dev and production setup, False means the project runs in production mode and True means project runs in development mode.
-DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = config("DEBUG", default=True, cast=bool)
 
 # Allowed hosts is the list of hosts to allow hitting the project.
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
+
+# Needed for 'debug' to be available inside templates.
+# See https://docs.djangoproject.com/en/4.1/ref/templates/api/#django-template-context-processors-debug
+INTERNAL_IPS = ["127.0.0.1", "0.0.0.0", "localhost", "10.5.0.1"]
 
 # The django apps and the external apps.
 INSTALLED_APPS = [
@@ -29,6 +33,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "api",
 ]
 
 MIDDLEWARE = [
@@ -67,17 +72,9 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # },
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("POSTGRES_DB", default="postgres", cast=str),
-        "USER": config("POSTGRES_USER", default="postgres", cast=str),
-        "PASSWORD": config("POSTGRES_PASSWORD", default="postgres", cast=str),
-        "HOST": config("POSTGRES_HOST", default="db", cast=str),
-        "PORT": config("POSTGRES_PORT", default="5432", cast=str),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     },
 }
 
@@ -116,16 +113,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Vite App Dir: point it to the folder your vite app is in.
+VITE_APP_DIR = base_dir_join("frontend")
+
 # Storage
 STATIC_ROOT = base_dir_join("staticfiles")
 STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    VITE_APP_DIR + "/dist",
+]
 
 MEDIA_ROOT = base_dir_join("mediafiles")
 MEDIA_URL = "/media/"

@@ -1,29 +1,39 @@
 version: "3.9"
 services:
 
-  db:
-    image: postgres:12-alpine
-    volumes:
-      - ./db:/var/lib/postgresql/data
-    env_file:
-      - backend/.env
-    ports:
-      - 5432:5432
-    logging:
-        driver: none
+  # db:
+  #   image: postgres:12-alpine
+  #   volumes:
+  #     - ./db:/var/lib/postgresql/data
+  #   env_file:
+  #     - web/.env
+  #   ports:
+  #     - 5432:5432
+  #   logging:
+  #       driver: none
 
-  backend:  # This service that serves the api for regression and classification
-    build: backend
+  web:  # This service that serves the api for regression and classification
+    build: web
     entrypoint: ./entrypoint.sh
-    image: app-backend
+    image: django-react-vite
     volumes:
-      - ./backend:/app
+      - ./web:/app
     ports:
       - "8000:8000"
+      - "3000:3000"
     env_file:
-      - backend/.env
-    depends_on:
-      - db
-      - redis
+      - web/.env
+    # depends_on:
+    #   - db
     stdin_open: true # for testing
     tty: true # for testing
+    networks:
+      - vpcbr
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
