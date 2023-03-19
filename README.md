@@ -37,3 +37,48 @@ Follow these steps to open this sample in a container using the VS Code Dev Cont
    - Clone this repository to your local filesystem.
    - Press <kbd>F1</kbd> and select the **Dev Containers: Open Folder in Container...** command.
    - Select the cloned copy of this folder, wait for the container to start, and try things out!
+
+## Get started
+
+### Running the project
+
+1. Open the project in VSCode
+1. Open the terminal in VSCode
+1. Run `docker-compose up` to start the project
+1. Run `docker-compose exec web python manage.py migrate` to run migrations
+1. Run `docker-compose exec web python manage.py createsuperuser` to create a superuser
+1. visit `localhost:8000` to view the project with both the frontend and backend
+
+### Running the frontend
+
+1. Open the project in VSCode
+1. Open the terminal in VSCode
+1. Run `cd frontend` to navigate to the frontend directory
+1. Run `npm install` to install the dependencies
+1. Run `npm run dev` to start the frontend
+1. visit `localhost:3000` to view the frontend only
+
+### Running the backend
+
+1. Open the project in VSCode
+1. Open the terminal in VSCode
+1. Run `cd backend` to navigate to the backend directory
+1. Run `python manage.py migrate` to run migrations
+1. Run `python manage.py createsuperuser` to create a superuser
+1. Run `python manage.py runserver` to start the backend
+1. visit `localhost:8000` to view the backend only
+
+## Features
+
+- [x] Django
+- [x] React
+- [x] Vite
+- [x] Devcontainer
+- [x] GitHub Codespaces
+
+## Acknowledgements
+
+- [vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/)
+- [Django](https://www.djangoproject.com/)
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)

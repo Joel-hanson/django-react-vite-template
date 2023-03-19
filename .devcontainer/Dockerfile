@@ -52,7 +52,7 @@ RUN bash /tmp/library-scripts/python-debian.sh "none" "/usr/local" "${PIPX_HOME}
 # Upgrade pip
 RUN pip install --upgrade pip
 # Install production dependencies
-COPY backend/requirements.txt /tmp/requirements.txt
+COPY web/requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt
 
