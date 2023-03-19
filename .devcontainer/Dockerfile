@@ -15,6 +15,7 @@ ARG NPM_GLOBAL=/usr/local/share/npm-global
 ENV NVM_DIR=/usr/local/share/nvm
 ENV NVM_SYMLINK_CURRENT=true \ 
     PATH=${NPM_GLOBAL}/bin:${NVM_DIR}/current/bin:${PATH}
+
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     # Remove imagemagick due to https://security-tracker.debian.org/tracker/CVE-2019-10131
     && apt-get purge -y imagemagick imagemagick-6-common \
@@ -37,16 +38,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && npm cache clean --force > /dev/null 2>&1 \
     # Install python-is-python3 on bullseye to prevent node-gyp regressions
     && . /etc/os-release \
-    && if [ "${VERSION_CODENAME}" = "bullseye" ]; then apt-get -y install --no-install-recommends python-is-python3; fi \
+    && apt-get -y install --no-install-recommends python-is-python3 python3-pip \
     # Clean up
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /root/.gnupg /tmp/library-scripts
-
-# Setup default python tools in a venv via pipx to avoid conflicts
-ENV PIPX_HOME=/usr/local/py-utils \
-    PIPX_BIN_DIR=/usr/local/py-utils/bin
-ENV PATH=${PATH}:${PIPX_BIN_DIR}
-RUN bash /tmp/library-scripts/python-debian.sh "none" "/usr/local" "${PIPX_HOME}" "${USERNAME}" \ 
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /root/.gnupg
 
 ## Pip dependencies
 # Upgrade pip
