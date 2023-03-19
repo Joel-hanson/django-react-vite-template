@@ -4,6 +4,8 @@
 
 This is a template for a Django project with React. This project can also be run using the devcontainer in VSCode.
 
+Thanks to luciano ratamero for sharing this template on [github](https://github.com/labcodes/django-react-boilerplate) also for his amazing gist on [how to use django with react](https://gist.github.com/lucianoratamero/7fc9737d24229ea9219f0987272896a2). I used his template as a base for this template.
+
 The devcontainer library files are taken from the [vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers) repository. More about devcontainers can be found [here](https://containers.dev/) and [here](https://github.com/devcontainers).
 
 ## Setting up the development container
